@@ -10,6 +10,17 @@ The service fetches from one repository indicated by the environment-variable $O
         -e REMOTE=git@github.com:nemoinho/another-repo.git \
         nemoinho/repo-syncer
 
+## docker-compose
+    version: '3'
+    services:
+        repo-syncer:
+            image: nemoinho/repo-syncer
+            volumes:
+                - id_rsa.key:/ssh-template/id_rsa:ro
+            environment:
+                ORIGIN: git@github.com:nemoinho/repo-syncer.git
+                REMOTE: git@github.com:nemoinho/another-repo.git
+
 # Important notes
 
 1. Only SSH-based connections are supported right now
